@@ -1,354 +1,91 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌿 Workshop: Không Còn Ngập Trong Tài Liệu | NotebookLM</title>
-<meta name="description" content="Workshop 2 giờ ứng dụng NotebookLM để đọc nhanh, hỏi đúng, tổng hợp có cấu trúc. Thứ Bảy 16/05/2026 - 199.000đ">
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--green:#22c55e;--green-dark:#16a34a;--green-glow:rgba(34,197,94,0.15);--bg:#0a0f0a;--bg2:#0f1a0f;--bg3:#111b11;--text:#f0fdf4;--muted:#86efac;--card:rgba(255,255,255,0.04);--border:rgba(34,197,94,0.2)}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-serif;line-height:1.6}
-/* NAV */
-nav{position:fixed;top:0;width:100%;z-index:100;padding:16px 24px;background:rgba(10,15,10,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-.nav-logo{font-size:1.1rem;font-weight:700;color:var(--green)}
-.nav-cta{background:var(--green);color:#000;padding:10px 20px;border-radius:50px;font-weight:700;font-size:.9rem;text-decoration:none;transition:.3s}
-.nav-cta:hover{background:var(--green-dark);transform:scale(1.05)}
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(34,197,94,0.12),transparent)}
-.hero-badge{display:inline-block;background:var(--green-glow);border:1px solid var(--border);color:var(--green);padding:8px 20px;border-radius:50px;font-size:.85rem;font-weight:600;margin-bottom:24px}
-.hero h1{font-size:clamp(2rem,5vw,3.8rem);font-weight:800;line-height:1.15;margin-bottom:20px;max-width:800px;margin-inline:auto}
-.hero h1 span{color:var(--green)}
-.hero-sub{font-size:1.15rem;color:var(--muted);max-width:580px;margin:0 auto 36px}
-.hero-info{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
-.info-chip{background:var(--card);border:1px solid var(--border);padding:10px 20px;border-radius:50px;font-size:.9rem;color:var(--muted)}
-.info-chip strong{color:var(--green)}
-.btn-primary{display:inline-block;background:linear-gradient(135deg,var(--green),var(--green-dark));color:#000;padding:18px 40px;border-radius:50px;font-size:1.1rem;font-weight:800;text-decoration:none;transition:.3s;box-shadow:0 0 30px rgba(34,197,94,0.3)}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 0 50px rgba(34,197,94,0.5)}
-.price-note{margin-top:16px;font-size:.9rem;color:var(--muted)}
-/* SECTIONS */
-section{padding:80px 24px;max-width:900px;margin:0 auto}
-.section-tag{display:inline-block;color:var(--green);font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
-h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;margin-bottom:36px}
-h2 span{color:var(--green)}
-/* PAIN */
-.pain-grid{display:grid;gap:12px}
-.pain-item{background:var(--card);border:1px solid rgba(239,68,68,0.15);border-radius:16px;padding:20px 24px;display:flex;align-items:flex-start;gap:14px}
-.pain-item .icon{font-size:1.3rem;flex-shrink:0}
-.pain-item p{color:#fca5a5;font-size:.95rem}
-/* OUTCOMES */
-.outcome-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:600px){.outcome-grid{grid-template-columns:1fr}}
-.outcome-card{background:var(--green-glow);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;gap:12px;align-items:flex-start}
-.outcome-card .ck{color:var(--green);font-size:1.2rem;flex-shrink:0}
-.outcome-card p{font-size:.9rem;color:var(--muted)}
-/* MODULES */
-.modules{list-style:none;display:grid;gap:14px}
-.module{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px 24px;display:flex;gap:16px;align-items:flex-start;transition:.3s}
-.module:hover{border-color:var(--green);background:var(--green-glow)}
-.mod-num{background:var(--green);color:#000;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;flex-shrink:0}
-.mod-title{font-weight:700;margin-bottom:4px;font-size:1rem}
-.mod-time{font-size:.8rem;color:var(--green);margin-bottom:8px}
-.mod-desc{font-size:.85rem;color:var(--muted)}
-/* SKILLS */
-.skills-grid{display:grid;gap:14px}
-.skill-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px 24px;display:flex;gap:14px;align-items:flex-start}
-.skill-num{color:var(--green);font-weight:800;font-size:1.1rem;flex-shrink:0}
-.skill-title{font-weight:700;margin-bottom:4px}
-.skill-desc{font-size:.88rem;color:var(--muted)}
-/* BENEFITS */
-.benefits-card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:40px;text-align:center}
-.price-tag{font-size:3rem;font-weight:800;color:var(--green);margin:16px 0}
-.price-tag small{font-size:1.2rem;color:var(--muted)}
-.benefits-list{list-style:none;text-align:left;display:grid;gap:12px;margin-top:24px}
-.benefits-list li{display:flex;gap:10px;align-items:flex-start;font-size:.95rem}
-.benefits-list li::before{content:"✅";flex-shrink:0}
-/* WHO */
-.who-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
-.who-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;font-size:.9rem;color:var(--muted)}
-.who-card::before{content:"✅ ";color:var(--green);font-weight:700}
-/* WARNING */
-.warning-box{background:rgba(234,179,8,0.08);border:1px solid rgba(234,179,8,0.25);border-radius:16px;padding:28px;margin-top:20px}
-.warning-box p{color:#fde68a;font-size:.95rem;line-height:1.7}
-/* CTA FINAL */
-.cta-final{text-align:center;padding:80px 24px;background:radial-gradient(ellipse 70% 50% at 50% 100%,rgba(34,197,94,0.1),transparent)}
-.cta-final h2{margin-bottom:16px;font-size:clamp(1.8rem,3vw,2.6rem)}
-.cta-final p{color:var(--muted);margin-bottom:36px;font-size:1.05rem;max-width:500px;margin-inline:auto}
-.cta-steps{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:36px}
-.cta-step{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 24px;font-size:.95rem;color:var(--muted);width:100%;max-width:420px}
-.cta-step strong{color:var(--text)}
-/* DIVIDER */
-.divider{width:60px;height:3px;background:var(--green);border-radius:4px;margin:0 auto 40px}
-/* FOOTER */
-footer{padding:32px 24px;text-align:center;border-top:1px solid var(--border);color:var(--muted);font-size:.85rem}
-/* FLOATING */
-.float-cta{position:fixed;bottom:24px;right:24px;z-index:99}
-.float-cta a{display:block;background:linear-gradient(135deg,var(--green),var(--green-dark));color:#000;padding:14px 24px;border-radius:50px;font-weight:800;text-decoration:none;box-shadow:0 4px 30px rgba(34,197,94,0.4);transition:.3s}
-.float-cta a:hover{transform:translateY(-3px);box-shadow:0 8px 40px rgba(34,197,94,0.5)}
-/* REGISTRATION FORM */
-.reg-section{padding:80px 24px;max-width:960px;margin:0 auto}
-.reg-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
-@media(max-width:700px){.reg-grid{grid-template-columns:1fr}}
-.reg-form-card{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:24px;padding:36px}
-.reg-form-card h3{font-size:1rem;font-weight:700;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:24px}
-.form-group{margin-bottom:20px}
-.form-group label{display:block;font-size:.88rem;font-weight:600;color:var(--text);margin-bottom:6px}
-.form-group .hint{font-size:.78rem;color:var(--muted);margin-bottom:8px}
-.form-group input,.form-group select{width:100%;background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:12px;padding:13px 16px;color:var(--text);font-family:inherit;font-size:.95rem;outline:none;transition:.25s}
-.form-group input::placeholder{color:rgba(134,239,172,0.4)}
-.form-group input:focus,.form-group select:focus{border-color:var(--green);background:rgba(34,197,94,0.07);box-shadow:0 0 0 3px rgba(34,197,94,0.15)}
-.form-group select{appearance:none;cursor:pointer}
-.form-section-title{font-size:.8rem;font-weight:700;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;margin:24px 0 16px;padding-top:16px;border-top:1px solid var(--border)}
-.req{color:#f87171}
-.btn-submit{width:100%;background:linear-gradient(135deg,var(--green),var(--green-dark));color:#000;border:none;padding:16px;border-radius:14px;font-size:1.05rem;font-weight:800;cursor:pointer;font-family:inherit;transition:.3s;margin-top:8px}
-.btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(34,197,94,0.4)}
-.btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
-.success-msg{display:none;background:rgba(34,197,94,0.12);border:1px solid var(--green);border-radius:14px;padding:20px;text-align:center;margin-top:16px}
-.success-msg p{color:var(--green);font-weight:600}
-/* QR CARD */
-.qr-card{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:24px;padding:36px;text-align:center;position:sticky;top:90px}
-.qr-card h3{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:20px}
-.qr-wrapper{background:#fff;border-radius:16px;padding:16px;display:inline-block;margin-bottom:20px}
-.qr-wrapper img{width:200px;height:200px;display:block}
-.qr-placeholder{width:200px;height:200px;background:#f1f5f9;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:.85rem;text-align:center;padding:16px;line-height:1.5}
-.qr-info{background:rgba(34,197,94,0.08);border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:4px}
-.qr-bank{font-weight:800;font-size:1.1rem;color:var(--green);margin-bottom:8px}
-.qr-amount{font-size:1.8rem;font-weight:800;color:var(--text);margin-bottom:4px}
-.qr-amount span{font-size:1rem;color:var(--muted)}
-.qr-name{font-size:.85rem;color:var(--muted);margin-bottom:2px}
-.qr-acct{font-size:.95rem;font-weight:700;color:var(--text);letter-spacing:1px}
-.qr-note{margin-top:12px;font-size:.78rem;color:var(--muted);line-height:1.5}
-.qr-active{display:block}
-.qr-hidden{display:none}
-</style>
-</head>
-<body>
-
-<nav>
-  <div class="nav-logo">🌿 Workshop NotebookLM</div>
-  <a href="#dang-ky" class="nav-cta">Đăng Ký Ngay</a>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
-  <div>
-    <div class="hero-badge">🔥 Giá Pilot · Nhóm Đầu Tiên · Số Lượng Giới Hạn</div>
-    <h1>Không Còn Ngập<br><span>Trong Tài Liệu</span></h1>
-    <p class="hero-sub">Ứng dụng NotebookLM để đọc nhanh, hỏi đúng, tổng hợp có cấu trúc — workshop thực chiến 2 giờ</p>
-    <div class="hero-info">
-      <div class="info-chip">📅 <strong>Thứ Bảy, 16/05/2026</strong></div>
-      <div class="info-chip">⏰ <strong>20h00 – 22h00</strong></div>
-      <div class="info-chip">💻 <strong>Online · Zoom</strong></div>
-      <div class="info-chip">💰 <strong>199.000đ</strong></div>
-    </div>
-    <a href="#dang-ky" class="btn-primary">Đăng Ký Tham Gia →</a>
-    <p class="price-note">🎁 Tặng kèm: Zoom đồng hành mỗi tuần trong 3 tháng</p>
-  </div>
-</div>
-
-<!-- PAIN -->
-<section>
-  <div class="section-tag">Vấn Đề</div>
-  <h2>Bạn có từng rơi vào<br><span>những tình huống này?</span></h2>
-  <div class="pain-grid">
-    <div class="pain-item"><span class="icon">📌</span><p>Trước mặt là tập tài liệu dài vài chục đến vài trăm trang — đọc thủ công mất rất nhiều thời gian</p></div>
-    <div class="pain-item"><span class="icon">📌</span><p>Hỏi AI thì kết quả lại chung chung, không bám sát tài liệu của mình</p></div>
-    <div class="pain-item"><span class="icon">📌</span><p>Muốn tóm tắt, so sánh, bóc tách ý chính nhưng không biết hỏi thế nào</p></div>
-    <div class="pain-item"><span class="icon">📌</span><p>Muốn dùng ChatGPT, Gemini, NotebookLM… nhưng chưa biết công cụ nào dùng vào việc gì</p></div>
-  </div>
-</section>
-
-<!-- OUTCOMES -->
-<section>
-  <div class="section-tag">Kết Quả</div>
-  <h2>Sau workshop, <span>bạn có thể:</span></h2>
-  <div class="outcome-grid">
-    <div class="outcome-card"><span class="ck">✅</span><p>Đọc nhanh hơn — hỏi đúng hơn — tóm tắt có cấu trúc hơn</p></div>
-    <div class="outcome-card"><span class="ck">✅</span><p>Tạo Notebook làm việc cho từng chủ đề/hồ sơ/tài liệu cụ thể</p></div>
-    <div class="outcome-card"><span class="ck">✅</span><p>So sánh nhiều văn bản/hồ sơ trong một bảng rõ ràng</p></div>
-    <div class="outcome-card"><span class="ck">✅</span><p>Tạo checklist kiểm tra từ chính tài liệu đã đưa vào</p></div>
-    <div class="outcome-card"><span class="ck">✅</span><p>Biết khi nào dùng NotebookLM, khi nào dùng ChatGPT hay Gemini</p></div>
-    <div class="outcome-card"><span class="ck">✅</span><p>Có quy trình 5 bước biến tài liệu dài thành đầu ra dùng được</p></div>
-  </div>
-</section>
-
-<!-- MODULES -->
-<section>
-  <div class="section-tag">Chương Trình</div>
-  <h2>Lịch Trình <span>Workshop 2 Giờ</span></h2>
-  <ul class="modules">
-    <li class="module"><div class="mod-num">01</div><div><div class="mod-title">Tư duy đúng khi dùng AI với tài liệu dài</div><div class="mod-time">⏰ 10 phút</div><div class="mod-desc">Vì sao hỏi AI chung chung thường cho kết quả chung chung · Vai trò của người làm chuyên môn khi dùng AI</div></div></li>
-    <li class="module"><div class="mod-num">02</div><div><div class="mod-title">NotebookLM khác gì ChatGPT và Gemini?</div><div class="mod-time">⏰ 15 phút</div><div class="mod-desc">Điểm mạnh của từng công cụ · Cách phối hợp 3 công cụ mà không bị rối</div></div></li>
-    <li class="module"><div class="mod-num">03</div><div><div class="mod-title">Tạo Notebook và nạp nguồn đúng cách</div><div class="mod-time">⏰ 20 phút</div><div class="mod-desc">Đưa nhiều nguồn vào NotebookLM · Tổ chức tài liệu dài, nhiều file, nhiều nhóm thông tin</div></div></li>
-    <li class="module"><div class="mod-num">04</div><div><div class="mod-title">Bộ câu hỏi khai thác tài liệu</div><div class="mod-time">⏰ 25 phút</div><div class="mod-desc">Câu hỏi để tóm tắt · bóc tách ý chính · tìm điểm thiếu · yêu cầu AI bám sát nguồn</div></div></li>
-    <li class="module"><div class="mod-num">05</div><div><div class="mod-title">Biến tài liệu thành đầu ra dùng được</div><div class="mod-time">⏰ 25 phút</div><div class="mod-desc">Bảng so sánh · Checklist kiểm tra · Dàn ý báo cáo/quy trình · Ứng dụng vào công việc thật</div></div></li>
-    <li class="module"><div class="mod-num">06</div><div><div class="mod-title">Quy trình phối hợp NotebookLM – ChatGPT – Gemini</div><div class="mod-time">⏰ 20 phút</div><div class="mod-desc">Cách chuyển việc giữa các công cụ mà vẫn giữ được mạch xử lý</div></div></li>
-    <li class="module"><div class="mod-num">07</div><div><div class="mod-title">Kiểm tra kết quả và tránh dùng AI sai cách</div><div class="mod-time">⏰ 15 phút</div><div class="mod-desc">Các lỗi thường gặp · Cách kiểm tra lại thông tin · Giới hạn cần biết</div></div></li>
-    <li class="module"><div class="mod-num">08</div><div><div class="mod-title">Lộ trình thực hành 3 tháng</div><div class="mod-time">⏰ 10 phút</div><div class="mod-desc">Cách tham gia Zoom đồng hành hằng tuần · Cách duy trì thói quen ứng dụng AI vào công việc</div></div></li>
-  </ul>
-</section>
-
-<!-- SKILLS -->
-<section>
-  <div class="section-tag">Tài Liệu Tặng Kèm</div>
-  <h2>Bộ <span>5 Skill</span> Thực Chiến</h2>
-  <div class="skills-grid">
-    <div class="skill-card"><div class="skill-num">01</div><div><div class="skill-title">Khung nạp nguồn vào NotebookLM</div><div class="skill-desc">Biết cách chuẩn bị và tổ chức tài liệu trước khi đưa vào NotebookLM</div></div></div>
-    <div class="skill-card"><div class="skill-num">02</div><div><div class="skill-title">Bộ câu hỏi khai thác tài liệu dài</div><div class="skill-desc">Dùng để tóm tắt, bóc tách ý chính, tìm điểm thiếu và hỏi theo mục tiêu công việc</div></div></div>
-    <div class="skill-card"><div class="skill-num">03</div><div><div class="skill-title">Mẫu bảng so sánh nhiều nguồn</div><div class="skill-desc">Dùng khi cần so sánh nhiều văn bản, báo cáo, hồ sơ, quy trình hoặc tài liệu khác nhau</div></div></div>
-    <div class="skill-card"><div class="skill-num">04</div><div><div class="skill-title">Checklist kiểm tra kết quả AI</div><div class="skill-desc">Giúp bạn không phụ thuộc mù quáng vào câu trả lời của AI</div></div></div>
-    <div class="skill-card"><div class="skill-num">05</div><div><div class="skill-title">Quy trình phối hợp NotebookLM – ChatGPT – Gemini</div><div class="skill-desc">Biết việc nào để NotebookLM làm, việc nào chuyển sang ChatGPT/Gemini</div></div></div>
-  </div>
-</section>
-
-<!-- BENEFITS -->
-<section id="register">
-  <div class="section-tag">Quyền Lợi</div>
-  <h2>Bạn Nhận Được <span>Gì?</span></h2>
-  <div class="benefits-card">
-    <p style="color:var(--muted)">Phí tham gia</p>
-    <div class="price-tag">199.000đ <small>/ người</small></div>
-    <p style="color:var(--green);font-size:.85rem;font-weight:600;margin-bottom:8px">🔥 Giá pilot dành cho nhóm học viên đầu tiên</p>
-    <ul class="benefits-list">
-      <li>01 buổi workshop Zoom 2 giờ thực hành</li>
-      <li>Record buổi học để xem lại bất cứ lúc nào</li>
-      <li>Bộ câu hỏi/prompt mẫu khai thác tài liệu bằng NotebookLM</li>
-      <li>Checklist cách đọc – hỏi – tóm tắt – so sánh – kiểm tra nguồn</li>
-      <li>Bộ 5 Skill ứng dụng NotebookLM – ChatGPT – Gemini</li>
-      <li>Tham gia nhóm đồng hành ứng dụng AI trong công việc</li>
-      <li>Mỗi tuần 01 buổi Zoom đồng hành trong vòng 3 tháng</li>
-    </ul>
-    <div style="margin-top:32px;text-align:center">
-      <a href="https://m.me/" class="btn-primary" id="cta-main">Nhắn "NBLM" Để Đăng Ký →</a>
-      <p style="margin-top:12px;color:var(--muted);font-size:.85rem">Hoặc comment <strong style="color:var(--green)">"NBLM"</strong> · Số lượng giới hạn</p>
-    </div>
-  </div>
-</section>
-
-<!-- WHO -->
-<section>
-  <div class="section-tag">Đối Tượng</div>
-  <h2>Workshop Này <span>Dành Cho Ai?</span></h2>
-  <div class="who-grid">
-    <div class="who-card">Người mới bắt đầu dùng NotebookLM</div>
-    <div class="who-card">Người đã dùng ChatGPT/Gemini nhưng chưa biết khai thác tài liệu dài</div>
-    <div class="who-card">Nhân sự văn phòng thường xuyên đọc, tổng hợp, làm báo cáo</div>
-    <div class="who-card">Người làm tư vấn, hồ sơ, pháp lý, hành chính, đào tạo nội bộ</div>
-    <div class="who-card">Người làm chuyên môn cần xử lý nhiều văn bản, quy trình, checklist</div>
-    <div class="who-card">Chủ doanh nghiệp nhỏ muốn chuẩn hóa tài liệu và tri thức nội bộ bằng AI</div>
-  </div>
-  <div class="warning-box" style="margin-top:28px">
-    <p>⚠️ <strong style="color:#fde68a">Lưu ý quan trọng:</strong> Workshop này không hướng dẫn bạn dùng AI để <em>thay thế</em> tư duy chuyên môn. Workshop này hướng dẫn bạn dùng AI như một trợ lý đọc – lọc – tóm tắt – so sánh – đặt câu hỏi – xây khung nội dung. Người làm chuyên môn vẫn là người kiểm tra, đối chiếu và quyết định cuối cùng.</p>
-  </div>
-</section>
-
-<!-- REGISTRATION FORM -->
-<div id="dang-ky" class="reg-section">
-  <div class="section-tag" style="display:block;text-align:center;margin-bottom:12px">Đăng Ký & Thanh Toán</div>
-  <h2 style="text-align:center;margin-bottom:8px">Điền Thông Tin <span>Đăng Ký</span></h2>
-  <p style="text-align:center;color:var(--muted);margin-bottom:36px;font-size:.95rem">Sau khi chuyển khoản, bạn sẽ nhận link Zoom & tài liệu qua email trong vòng 24 giờ</p>
-  <div class="reg-grid">
-    <!-- FORM -->
-    <div class="reg-form-card">
-      <h3>Thông Tin Của Bạn</h3>
-      <form id="reg-form" onsubmit="handleSubmit(event)">
-        <div class="form-group">
-          <label for="fullname">Họ và tên <span class="req">*</span></label>
-          <input type="text" id="fullname" name="fullname" placeholder="Nguyễn Văn A" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Email <span class="req">*</span></label>
-          <div class="hint">Hệ thống sẽ gửi xác nhận thanh toán và bản tin qua địa chỉ này.</div>
-          <input type="email" id="email" name="email" placeholder="email@example.com" required>
-        </div>
-        <div class="form-group">
-          <label for="phone">Số điện thoại <span class="req">*</span></label>
-          <div class="hint">Dùng để gửi tin nhắn Zalo hoặc liên hệ khi cần.</div>
-          <input type="tel" id="phone" name="phone" placeholder="09xxxxxxxx" required>
-        </div>
-        <div class="form-section-title">Lựa Chọn Đăng Ký</div>
-        <div class="form-group">
-          <label for="option">Lựa chọn <span class="req">*</span></label>
-          <select id="option" name="option" required>
-            <option value="workshop">Workshop NotebookLM: 199.000đ</option>
-          </select>
-        </div>
-        <button type="submit" class="btn-submit" id="submit-btn">Đăng ký &amp; thanh toán</button>
-        <div class="success-msg" id="success-msg">
-          <p>✅ Đã ghi nhận đăng ký!</p>
-          <p style="font-size:.85rem;color:var(--muted);font-weight:400;margin-top:8px">Vui lòng chuyển khoản theo mã QR bên cạnh. Bạn sẽ nhận xác nhận qua email trong 24 giờ.</p>
-        </div>
-      </form>
-    </div>
-    <!-- QR PAYMENT -->
-    <div class="qr-card">
-      <h3>Mã QR Thanh Toán</h3>
-      <div id="qr-placeholder-wrap" class="qr-placeholder">Nhập đầy đủ thông tin hợp lệ để hiển thị mã QR</div>
-      <div id="qr-active-wrap" class="qr-hidden">
-        <div class="qr-wrapper">
-          <img id="qr-img" src="" alt="QR Vietcombank" width="200" height="200">
-        </div>
-        <div class="qr-info">
-          <div class="qr-bank">🏦 Vietcombank</div>
-          <div class="qr-amount">199.000 <span>VND</span></div>
-          <div class="qr-name">NGUYEN THI HUONG</div>
-          <div class="qr-acct">1110316666</div>
-          <div class="qr-note" id="qr-note">Nội dung: <strong style="color:var(--green)">AI Ung dung [SĐT của bạn]</strong></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<script>
-function validateForm(){
-  const name=document.getElementById('fullname').value.trim();
-  const email=document.getElementById('email').value.trim();
-  const phone=document.getElementById('phone').value.trim();
-  return name.length>1 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && phone.length>=9;
-}
-function updateQR(){
-  const valid=validateForm();
-  const name=document.getElementById('fullname').value.trim();
-  const ph=document.getElementById('qr-placeholder-wrap');
-  const ac=document.getElementById('qr-active-wrap');
-  const img=document.getElementById('qr-img');
-  const note=document.getElementById('qr-note');
-  if(valid){
-    const phone=document.getElementById('phone').value.trim();
-    const addInfo=encodeURIComponent('AI Ung dung '+phone);
-    img.src='https://img.vietqr.io/image/VCB-1110316666-compact2.png?amount=199000&addInfo='+addInfo+'&accountName=NGUYEN%20THI%20HUONG';
-    note.innerHTML='Nội dung: <strong style="color:var(--green)">AI Ung dung '+phone+'</strong>';
-    ph.classList.add('qr-hidden'); ph.classList.remove('qr-active');
-    ac.classList.add('qr-active'); ac.classList.remove('qr-hidden');
-  } else {
-    ph.classList.remove('qr-hidden'); ph.classList.add('qr-active');
-    ac.classList.remove('qr-active'); ac.classList.add('qr-hidden');
-  }
-}
-['fullname','email','phone'].forEach(id=>document.getElementById(id).addEventListener('input',updateQR));
-function handleSubmit(e){
-  e.preventDefault();
-  if(!validateForm()) return;
-  const btn=document.getElementById('submit-btn');
-  btn.disabled=true; btn.textContent='Đang xử lý...';
-  setTimeout(()=>{
-    document.getElementById('success-msg').style.display='block';
-    btn.textContent='✅ Đã đăng ký!';
-    updateQR();
-  },800);
-}
-</script>
-
-<footer>
-  <p>🌿 Workshop: Không Còn Ngập Trong Tài Liệu · NotebookLM × ChatGPT × Gemini</p>
-  <p style="margin-top:8px">#NBLM #AIUngDung #NotebookLM #ChatGPT #Gemini</p>
-</footer>
-
-<div class="float-cta">
-  <a href="#dang-ky" id="float-btn">🌿 Đăng Ký — 199k</a>
-</div>
-
-</body>
-</html>
+🌿 Workshop NotebookLM
+Đăng Ký Ngay
+🔥 Giá Pilot · Nhóm Đầu Tiên · Số Lượng Giới Hạn
+Không Còn Ngập Trong Tài Liệu
+Ứng dụng NotebookLM để đọc nhanh, hỏi đúng, tổng hợp có cấu trúc — workshop thực chiến 2 giờ
+📅 Thứ Bảy, 16/05/2026
+⏰ 20h00 – 22h00
+💻 Online · Zoom
+💰 199.000đ
+Đăng Ký Tham Gia →
+🎁 Tặng kèm: Zoom đồng hành mỗi tuần trong 3 tháng
+VẤN ĐỀ
+Bạn có từng rơi vào những tình huống này?
+📌
+Trước mặt là tập tài liệu dài vài chục đến vài trăm trang — đọc thủ công mất rất nhiều thời gian
+📌
+Hỏi AI thì kết quả lại chung chung, không bám sát tài liệu của mình
+📌
+Muốn tóm tắt, so sánh, bóc tách ý chính nhưng không biết hỏi thế nào
+📌
+Muốn dùng ChatGPT, Gemini, NotebookLM… nhưng chưa biết công cụ nào dùng vào việc gì
+KẾT QUẢ
+Sau workshop, bạn có thể:
+✅
+Đọc nhanh hơn — hỏi đúng hơn — tóm tắt có cấu trúc hơn
+✅
+Tạo Notebook làm việc cho từng chủ đề/hồ sơ/tài liệu cụ thể
+✅
+So sánh nhiều văn bản/hồ sơ trong một bảng rõ ràng
+✅
+Tạo checklist kiểm tra từ chính tài liệu đã đưa vào
+✅
+Biết khi nào dùng NotebookLM, khi nào dùng ChatGPT hay Gemini
+✅
+Có quy trình 5 bước biến tài liệu dài thành đầu ra dùng được
+CHƯƠNG TRÌNH
+Lịch Trình Workshop 2 Giờ
+	•	01Tư duy đúng khi dùng AI với tài liệu dài ⏰ 10 phút Vì sao hỏi AI chung chung thường cho kết quả chung chung · Vai trò của người làm chuyên môn khi dùng AI  02NotebookLM khác gì ChatGPT và Gemini? ⏰ 15 phút Điểm mạnh của từng công cụ · Cách phối hợp 3 công cụ mà không bị rối  03Tạo Notebook và nạp nguồn đúng cách ⏰ 20 phút Đưa nhiều nguồn vào NotebookLM · Tổ chức tài liệu dài, nhiều file, nhiều nhóm thông tin  04Bộ câu hỏi khai thác tài liệu ⏰ 25 phút Câu hỏi để tóm tắt · bóc tách ý chính · tìm điểm thiếu · yêu cầu AI bám sát nguồn  05Biến tài liệu thành đầu ra dùng được ⏰ 25 phút Bảng so sánh · Checklist kiểm tra · Dàn ý báo cáo/quy trình · Ứng dụng vào công việc thật  06Quy trình phối hợp NotebookLM – ChatGPT – Gemini ⏰ 20 phút Cách chuyển việc giữa các công cụ mà vẫn giữ được mạch xử lý  07Kiểm tra kết quả và tránh dùng AI sai cách ⏰ 15 phút Các lỗi thường gặp · Cách kiểm tra lại thông tin · Giới hạn cần biết  08Lộ trình thực hành 3 tháng ⏰ 10 phút Cách tham gia Zoom đồng hành hằng tuần · Cách duy trì thói quen ứng dụng AI vào công việc 
+TÀI LIỆU TẶNG KÈM
+Bộ 5 Skill Thực Chiến
+01
+Khung nạp nguồn vào NotebookLM
+Biết cách chuẩn bị và tổ chức tài liệu trước khi đưa vào NotebookLM
+02
+Bộ câu hỏi khai thác tài liệu dài
+Dùng để tóm tắt, bóc tách ý chính, tìm điểm thiếu và hỏi theo mục tiêu công việc
+03
+Mẫu bảng so sánh nhiều nguồn
+Dùng khi cần so sánh nhiều văn bản, báo cáo, hồ sơ, quy trình hoặc tài liệu khác nhau
+04
+Checklist kiểm tra kết quả AI
+Giúp bạn không phụ thuộc mù quáng vào câu trả lời của AI
+05
+Quy trình phối hợp NotebookLM – ChatGPT – Gemini
+Biết việc nào để NotebookLM làm, việc nào chuyển sang ChatGPT/Gemini
+QUYỀN LỢI
+Bạn Nhận Được Gì?
+Phí tham gia
+199.000đ / người
+🔥 Giá pilot dành cho nhóm học viên đầu tiên
+	•	01 buổi workshop Zoom 2 giờ thực hành Record buổi học để xem lại bất cứ lúc nào Bộ câu hỏi/prompt mẫu khai thác tài liệu bằng NotebookLM Checklist cách đọc – hỏi – tóm tắt – so sánh – kiểm tra nguồn Bộ 5 Skill ứng dụng NotebookLM – ChatGPT – Gemini Tham gia nhóm đồng hành ứng dụng AI trong công việc Mỗi tuần 01 buổi Zoom đồng hành trong vòng 3 tháng
+Nhắn "NBLM" Để Đăng Ký →
+Hoặc comment "NBLM" · Số lượng giới hạn
+ĐỐI TƯỢNG
+Workshop Này Dành Cho Ai?
+Người mới bắt đầu dùng NotebookLM
+Người đã dùng ChatGPT/Gemini nhưng chưa biết khai thác tài liệu dài
+Nhân sự văn phòng thường xuyên đọc, tổng hợp, làm báo cáo
+Người làm tư vấn, hồ sơ, pháp lý, hành chính, đào tạo nội bộ
+Người làm chuyên môn cần xử lý nhiều văn bản, quy trình, checklist
+Chủ doanh nghiệp nhỏ muốn chuẩn hóa tài liệu và tri thức nội bộ bằng AI
+⚠️ Lưu ý quan trọng: Workshop này không hướng dẫn bạn dùng AI để thay thế tư duy chuyên môn. Workshop này hướng dẫn bạn dùng AI như một trợ lý đọc – lọc – tóm tắt – so sánh – đặt câu hỏi – xây khung nội dung. Người làm chuyên môn vẫn là người kiểm tra, đối chiếu và quyết định cuối cùng.
+ĐĂNG KÝ & THANH TOÁN
+Điền Thông Tin Đăng Ký
+Sau khi chuyển khoản, bạn sẽ nhận link Zoom & tài liệu qua email trong vòng 24 giờ
+THÔNG TIN CỦA BẠN
+Họ và tên *
+Email *
+Hệ thống sẽ gửi xác nhận thanh toán và bản tin qua địa chỉ này.
+Số điện thoại *
+Dùng để gửi tin nhắn Zalo hoặc liên hệ khi cần.
+LỰA CHỌN ĐĂNG KÝ
+Lựa chọn *
+            Workshop NotebookLM: 199.000đ
+          
+Đăng ký & thanh toán
+Mã QR Thanh Toán
+Nhập đầy đủ thông tin hợp lệ để hiển thị mã QR
+🌿 Workshop: Không Còn Ngập Trong Tài Liệu · NotebookLM × ChatGPT × Gemini
+#NBLM #AIUngDung #NotebookLM #ChatGPT #Gemini
+🌿 Đăng Ký — 199k
