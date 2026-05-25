@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors',
-                body: formData
+                body: new URLSearchParams(formData)
             }).then(() => {
                 // Show success and QR
                 transferContent.textContent = transferMsg;
