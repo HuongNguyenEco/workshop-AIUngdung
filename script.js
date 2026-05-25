@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // THAY THẾ LINK WEB APP CỦA GOOGLE APPS SCRIPT VÀO ĐÂY
             // Xem file Huong_dan_GoogleSheet.txt để biết cách lấy link này.
-            const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyiCSyF7qcXsl_0M7A0YVC4qjh2hy9z5oHlkPqDuD-RidWzrKTHMmtBhvr8bl6AWUko/exec';
             
             // We use mode: 'no-cors' to avoid CORS issues when submitting to Google Script
             fetch(GOOGLE_SCRIPT_URL, {
