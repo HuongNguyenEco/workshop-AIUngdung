@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Format name to unaccented without spaces for transfer content
             const formattedName = removeAccents(fullName).replace(/\s+/g, '');
-            const transferMsg = `${formattedName}_${phoneVal}`;
+            const transferMsg = `${phoneVal}_WS02_${formattedName}`;
             
             // Prepare data for Google Sheet
             const formData = new FormData();
@@ -65,7 +65,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }).then(() => {
                 // Show success and QR
                 transferContent.textContent = transferMsg;
-                qrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=Techcombank_199k_${transferMsg}`;
+                
+                // TẠO MÃ QR ĐỘNG CHUẨN VIETQR
+                const bankId = "vietcombank"; // Ngân hàng Vietcombank
+                const accountNo = "1110316666"; // Số tài khoản thật của bạn
+                const accountName = "NGUYEN THI HUONG"; // Tên chủ tài khoản
+                const amount = "199000"; 
+                
+                qrCode.src = `https://img.vietqr.io/image/${bankId}-${accountNo}-compact.png?amount=${amount}&addInfo=${transferMsg}&accountName=${accountName}`;
 
                 form.style.display = 'none';
                 paymentSection.classList.remove('hidden');
